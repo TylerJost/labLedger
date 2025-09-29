@@ -1,7 +1,7 @@
 [workspace]
 authors = ["Tyler Jost <tjost@bwh.harvard.edu>"]
 channels = ["conda-forge"]
-name = "testEnv"
+name = "labLedger"
 platforms = ["linux-64"]
 version = "0.1.0"
 
