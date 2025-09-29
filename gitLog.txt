@@ -1,0 +1,21 @@
+=== /data/hePred ===
+6bf0ce5 2025-09-25 Look at cycif predictions
+03b4f70 2025-09-22 scripts for generating and analyzing hovernet output on lsp and mgb images
+f8c7167 2025-09-22 change to a region of the wsi
+0f7ab04 2025-09-22 improve umap appearance
+
+=== /data/kronos/KRONOS ===
+
+=== /data/trident ===
+
+=== /data/deblur ===
+
+=== /data/ghist/GHIST ===
+
+=== /data/ghist/stainlib ===
+
+=== /data/ghist/hover_net ===
+
+
+=== SUMMARY ===
+Change to a region of the wsi. improve umap appearance. Look at cycif predictions. scripts for generating and analyzing hovernet output on lsp and mgb images.
