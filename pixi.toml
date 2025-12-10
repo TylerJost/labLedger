@@ -11,5 +11,9 @@ cuda = "12.0"
 [tasks]
 
 [dependencies]
-transformers = ">=4.56.2,<5"
 pytorch-gpu = "*"
+transformers = ">=4.56.2,<5"
+
+[pypi-dependencies]
+ipykernel = "*"
+textual = "*"
