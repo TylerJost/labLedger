@@ -4,10 +4,6 @@ set -euo pipefail
 
 # Change this config to your name/email
 source labrat.conf
-
-# Clear old output
-# > "$OUTPUT"
-OUTPUTTEMP='./lastWeekOutput.txt'
 printf "\n\n`date +%F` ----\n" >> "$OUTPUT"
 # Find all .git folders and loop through their parent directories
 find "$BASE_DIR" -type d -name ".git" | while read gitdir; do
