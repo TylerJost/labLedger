@@ -1,2 +1,4 @@
 .vscode/
 gitLog.txt
+load_keys.sh
+chroma_db/
