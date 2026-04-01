@@ -41,14 +41,14 @@ USER REQUEST:
 
 Please provide your response in the following Markdown format:
 
-### 🚀 Standup Summary
+### Standup Summary
 *Summarize the main technical achievements and progress made.*
 
-### 📊 Commit Quality Audit
+### Commit Quality Audit
 *For each commit provided in the context, give a score (0-10) and a 1-sentence critique.*
 - **[Hash]**: [Score]/10 - [Critique]
 
-### 💡 Senior Advice
+### Senior Advice
 *Provide one specific piece of advice to improve the commit history or coding workflow based on these changes.*
 """)
 
