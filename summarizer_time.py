@@ -1,4 +1,5 @@
 # %%
+import datetime
 import os
 from pathlib import Path
 
@@ -10,6 +11,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
 # %%
+filterDate = (datetime.datetime.now() - datetime.timedelta(days=7)).timestamp()
 # 0. Embeddings
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2"
@@ -19,8 +21,6 @@ vector_db = Chroma(
     persist_directory="./chroma_db",
     embedding_function=embeddings,
 )
-
-retriever = vector_db.as_retriever(search_kwargs={"k": 5})
 
 # 1. LLM
 llm = ChatAnthropic(
@@ -53,24 +53,41 @@ Please provide your response in the following Markdown format:
 """)
 
 # 3. Format retrieved docs into a single string
-def format_docs(docs):
-    return "\n\n".join(doc.page_content for doc in docs)
+def getLastWeek(_):
+    docs = vector_db.get(
+        where={"timestamp": {"$gte": filterDate}}
+    )
+    # Reconstruct into strings for the prompt
+    return "\n\n".join(docs['documents'])
 
 # 4. Build LCEL retrieval chain (modern way)
 rag_chain = (
     {
-        "context": retriever | format_docs,
+        "context": getLastWeek,
         "input": RunnablePassthrough(),
     }
     | prompt
     | llm
     | StrOutputParser()
 )
-
+# %%
 # 5. Run
-query = "What did I accomplish in the last week regarding the prediction logic?"
+query = "What did I accomplish in the last week?"
 
 response = rag_chain.invoke(query)
 
 print(response)
 # %%
+import pandas as pd
+
+# Fetch everything from the collection
+data = vector_db.get(include=["metadatas", "documents"])
+
+# Convert to a list of dicts for Pandas
+rows = []
+for i in range(len(data['ids'])):
+    row = data['metadatas'][i]
+    row['content_snippet'] = data['documents'][i][:50] + "..."
+    rows.append(row)
+
+df = pd.DataFrame(rows)
