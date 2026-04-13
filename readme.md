@@ -1,6 +1,7 @@
 # Lab Ledger
 Lab Ledger is a *micro* project meant to help you be a better computational biologist. Given a base directory, labLedger finds git repos and stores their commits for the past week. It then uses a summarization model to summarize your work.
 
+![LabLedger basic workflow](workflow.png)
 # UPDATE
 Lab Ledger, a project with no users other than its creator, is back to "pre-release" mode as I change this over to a RAG application, mostly for better understanding of what a RAG application is. Locally, you can use `ingest.py` on a repo of your choice to make a vector database of your commits. 
 
